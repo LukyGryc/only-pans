@@ -24,11 +24,11 @@ const ProductCard: React.FC<Product> = ({ name, image, description, id }) => {
       </CardHeader>
       <CardFooter>
 
-      <Link href={`/product/${id}`} className="w-full">
-        <Button className="w-full bg-black text-white cursor-pointer" >
+      <Button asChild className="w-full bg-black text-white cursor-pointer">
+        <Link href={`/product/${id}`}>
           Learn More
-        </Button>
-      </Link>
+        </Link>
+      </Button>
 
       </CardFooter>
     </Card>
