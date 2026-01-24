@@ -10,7 +10,7 @@ export const Products: Product[] = [
             "Perfect for everyday cooking and professional chefs alike.",
             "Level up your cooking game with Pan Pro."
         ],
-        price: "$199.99",
+        price: 119.99,
         features: [
             "High-quality non-stick surface",
             "Ergonomic handle design",
@@ -28,7 +28,7 @@ export const Products: Product[] = [
             "Perfect for everyday cooking and professional chefs alike.",
             "Level up your cooking game with Pan Pro."
         ],
-        price: "$199.99",
+        price: 149.99,
         features: [
             "High-quality non-stick surface",
             "Ergonomic handle design",
@@ -46,7 +46,7 @@ export const Products: Product[] = [
             "Perfect for everyday cooking and professional chefs alike.",
             "Level up your cooking game with Pan Pro."
         ],
-        price: "$199.99",
+        price: 199.99,
         features: [
             "High-quality non-stick surface",
             "Ergonomic handle design",

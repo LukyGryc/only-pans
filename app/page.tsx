@@ -1,5 +1,5 @@
-import LandingPageOrb from "@/components/landingPage/LandingPageOrb";
-import ProductsIntro from "@/components/landingPage/ProductsIntro";
+import LandingPageOrb from "./LandingPageOrb";
+import ProductsIntro from "./ProductsIntro";
 
 export default function Home() {
   return (

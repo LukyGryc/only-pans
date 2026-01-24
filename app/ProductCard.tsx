@@ -1,9 +1,10 @@
 import { Product } from "@/types/products"
 import React from "react"
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card"
-import { Button } from "../ui/button"
+
 import Image from "next/image"
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 
 const ProductCard: React.FC<Product> = ({ name, image, description, id }) => {
   return (

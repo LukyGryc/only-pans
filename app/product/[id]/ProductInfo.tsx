@@ -1,8 +1,9 @@
 'use client';
 import { Product } from "@/types/products"
 import { Check } from "lucide-react"
-import { Button } from "../ui/button"
+import { Button } from "../../../components/ui/button"
 import UpdateCartButtons from "./UpdateCartButtons";
+import { getPriceFormatted } from "@/util/productUtil";
 
 const ProductInfo:React.FC<Product> = (product) => {
 
@@ -16,7 +17,7 @@ const ProductInfo:React.FC<Product> = (product) => {
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight">{name}</h1>
           <div className="text-3xl font-semibold text-gray-900">
             <p>
-              {price}
+              {getPriceFormatted(price)}
             </p>
             <p className={`text-lg font-medium ${isInStock? 'text-green-600' : 'text-red-600'}`}>
               {isInStock ? `In Stock (${stock < 10 ? stock : "10+"})` : 'Out of Stock'}

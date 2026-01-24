@@ -183,11 +183,13 @@ const CardNav: React.FC<CardNavProps> = ({
             />
           </button>
 
-          <span className={nameStyle}>
-            {name}
-          </span>
+          <Link href="/" >
+            <span className={nameStyle} onClick={closeMenuInstantly}>
+              {name}
+            </span>
+          </Link>
 
-          {extra}
+          <div className='mr-2' onClick={closeMenuInstantly}>{extra}</div>
         </div>
 
         <div
