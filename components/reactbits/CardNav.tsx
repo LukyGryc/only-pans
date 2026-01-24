@@ -149,10 +149,10 @@ const CardNav: React.FC<CardNavProps> = ({
         style={{ backgroundColor: baseColor }}
       >
         <div className="card-nav-top absolute inset-x-0 top-0 h-[60px] flex items-center justify-between p-2 pl-[1.1rem] z-[2]">
-          <div
+          <button
             className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px] order-2 md:order-none`}
             onClick={toggleMenu}
-            role="button"
+            aria-expanded={isExpanded}
             aria-label={isExpanded ? 'Close menu' : 'Open menu'}
             tabIndex={0}
             style={{ color: menuColor || '#000' }}
@@ -167,7 +167,7 @@ const CardNav: React.FC<CardNavProps> = ({
                 isHamburgerOpen ? '-translate-y-[4px] -rotate-45' : ''
               } group-hover:opacity-75`}
             />
-          </div>
+          </button>
 
           <span className={nameStyle}>
             {name}
@@ -183,13 +183,12 @@ const CardNav: React.FC<CardNavProps> = ({
           aria-hidden={!isExpanded}
         >
           {(Products || []).slice(0, 3).map((item, idx) => (
-            <div key={idx} className='relative flex-shrink-0 h-[120px] md:h-auto md:flex-1'>
+            <div ref={setCardRef(idx)} key={idx} className='relative flex-shrink-0 h-[120px] md:h-auto md:flex-1'>
               <Image
                 width={300}
                 height={100}
                 src={item.image}
                 alt={item.name}
-                ref={setCardRef(idx)}
                 className="object-cover cursor-pointer w-full h-full md:object-contain"
               />
               <span className="absolute text-base md:text-xl text-white z-10 top-0 px-2" >
