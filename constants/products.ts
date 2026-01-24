@@ -1,0 +1,53 @@
+export const Products = [
+    { 
+        id: "pan-pro",
+        name: "Pan Pro", 
+        image: "/pan_1.jpg",
+        description: [
+            "The ultimate pan for all your cooking needs. Durable, non-stick, and perfect for any kitchen.",
+            "Perfect for everyday cooking and professional chefs alike.",
+            "Level up your cooking game with Pan Pro."
+        ],
+        price: "$199.99",
+        features: [
+            "High-quality non-stick surface",
+            "Ergonomic handle design",
+            "Dishwasher safe",
+            "Lightweight and portable"
+        ]
+     },
+    { 
+        id: "pan-pro",
+        name: "Pan Pro", 
+        image: "/pan_2.jpg",
+        description: [
+            "The ultimate pan for all your cooking needs. Durable, non-stick, and perfect for any kitchen.",
+            "Perfect for everyday cooking and professional chefs alike.",
+            "Level up your cooking game with Pan Pro."
+        ],
+        price: "$199.99",
+        features: [
+            "High-quality non-stick surface",
+            "Ergonomic handle design",
+            "Dishwasher safe",
+            "Lightweight and portable"
+        ]
+     },
+    { 
+        id: "pan-pro",
+        name: "Pan Pro", 
+        image: "/pan_3.jpg",
+        description: [
+            "The ultimate pan for all your cooking needs. Durable, non-stick, and perfect for any kitchen.",
+            "Perfect for everyday cooking and professional chefs alike.",
+            "Level up your cooking game with Pan Pro."
+        ],
+        price: "$199.99",
+        features: [
+            "High-quality non-stick surface",
+            "Ergonomic handle design",
+            "Dishwasher safe",
+            "Lightweight and portable"
+        ]
+     }
+]
