@@ -37,6 +37,7 @@ const UpdateCartButtons: React.FC<Product> = ({ id, stock }) => {
             type="button"
             variant="ghost"
             size="icon"
+            aria-label="Decrease quantity"
             onClick={() => quantityInCart === 1 ? removeFromCart(id) : updateQuantity(id, -1)}
             className="rounded-r-none h-12"
           >
@@ -51,6 +52,7 @@ const UpdateCartButtons: React.FC<Product> = ({ id, stock }) => {
             type="button"
             variant="ghost"
             size="icon"
+            aria-label="Increase quantity"
             onClick={() => updateQuantity(id, 1)}
             disabled={quantityInCart >= stock}
             className="rounded-l-none h-12"
@@ -63,6 +65,7 @@ const UpdateCartButtons: React.FC<Product> = ({ id, stock }) => {
         <Button
           variant="destructive"
           size="icon"
+          aria-label="Remove all from cart"
           onClick={() => removeFromCart(id)}
           className="h-12 w-12"
           title="Remove all from cart"
