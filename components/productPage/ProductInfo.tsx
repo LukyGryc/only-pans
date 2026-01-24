@@ -19,7 +19,7 @@ const ProductInfo:React.FC<Product> = (product) => {
               {price}
             </p>
             <p className={`text-lg font-medium ${isInStock? 'text-green-600' : 'text-red-600'}`}>
-              {isInStock ? `In Stock (${stock < 20 ? stock : "10+"})` : 'Out of Stock'}
+              {isInStock ? `In Stock (${stock < 10 ? stock : "10+"})` : 'Out of Stock'}
             </p>
           </div>
         </div>
