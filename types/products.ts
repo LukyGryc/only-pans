@@ -3,7 +3,7 @@ export interface Product {
     name: string;
     image: string;
     description: string[];
-    price: string;
+    price: number;
     features: string[];
     stock: number;
 }
@@ -11,4 +11,8 @@ export interface Product {
 export interface CartItem {
     id: string;
     quantity: number;
+}
+
+export interface ProductWithQuantity extends Product {
+    quantity: number
 }

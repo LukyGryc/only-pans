@@ -1,4 +1,4 @@
-import Orb from '../reactbits/Orb'
+import Orb from "@/components/reactbits/Orb"
 
 const LandingPageOrb = () => {
   return (
