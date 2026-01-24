@@ -6,7 +6,6 @@ interface Props {
 };
 
 const SummaryOrder: React.FC<Props> = ({items}) => {
-    console.log(items)
     return (
         <div className="w-full lg:max-w-sm bg-gray-50 rounded-xl p-6 h-fit">
             <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
