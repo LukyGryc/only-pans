@@ -3,6 +3,7 @@ import React, { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import Image from 'next/image';
 import { Products } from '@/constants/products';
+import Link from 'next/link';
 
 export interface CardNavProps {
   extra: React.ReactNode;
@@ -135,6 +136,19 @@ const CardNav: React.FC<CardNavProps> = ({
     }
   };
 
+  const closeMenuInstantly = () => {
+    const navEl = navRef.current;
+    if (!navEl) return;
+    
+    // Immediately set states to closed
+    setIsHamburgerOpen(false);
+    setIsExpanded(false);
+    
+    // Instantly set nav to closed height without animation
+    gsap.set(navEl, { height: 60 });
+    gsap.set(cardsRef.current, { y: 50, opacity: 0 });
+  };
+
   const setCardRef = (i: number) => (el: HTMLDivElement | null) => {
     if (el) cardsRef.current[i] = el;
   };
@@ -184,16 +198,18 @@ const CardNav: React.FC<CardNavProps> = ({
         >
           {(Products || []).slice(0, 3).map((item, idx) => (
             <div ref={setCardRef(idx)} key={idx} className='relative flex-shrink-0 h-[120px] md:h-auto md:flex-1'>
-              <Image
-                width={300}
-                height={100}
-                src={item.image}
-                alt={item.name}
-                className="object-cover cursor-pointer w-full h-full md:object-contain"
-              />
-              <span className="absolute text-base md:text-xl text-white z-10 top-0 px-2" >
-                {item.name}
-              </span>
+              <Link href={`/product/${item.id}`} onClick={closeMenuInstantly}>
+                <Image
+                  width={300}
+                  height={100}
+                  src={item.image}
+                  alt={item.name}
+                  className="object-cover cursor-pointer w-full h-full md:object-contain"
+                />
+                <span className="absolute text-base md:text-xl text-white z-10 top-0 px-2" >
+                  {item.name}
+                </span>
+              </Link>
             </div>
           ))}
         </div>
