@@ -31,7 +31,6 @@ export default function RootLayout({
         <Header />
         {children}
 
-        <div />
         <footer className="w-full h-12 bg-black text-white flex justify-center items-center">
           <p>Will be footer when I grow up</p>
         </footer>

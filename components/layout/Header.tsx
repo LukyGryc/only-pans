@@ -5,7 +5,7 @@ import { ShoppingCart } from "lucide-react"
 
 const Header = () => {
   return (
-    <header className="fixed w-full z-1">
+    <header className="fixed w-full z-10">
         <CardNav 
             name="OnlyPans"
             nameStyle="text-2xl font-bold"

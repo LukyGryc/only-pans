@@ -7,10 +7,9 @@ import Image from "next/image"
 const ProductCard: React.FC<Product> = ({ name, image, description }) => {
   return (
     <Card className="relative mx-auto w-full max-w-sm pt-0">
-      <div className="absolute inset-0 z-30" />
       <Image
         src={image}
-        alt="Event cover"
+        alt={name}
         width={300}
         height={225}
         className=" z-20 w-full object-cover rounded-t-xl"
@@ -23,7 +22,7 @@ const ProductCard: React.FC<Product> = ({ name, image, description }) => {
         </CardDescription>
       </CardHeader>
       <CardFooter>
-        <Button className="w-full bg-black text-white">Show More</Button>
+        <Button className="w-full bg-black text-white cursor-pointer">Show More</Button>
       </CardFooter>
     </Card>
   )
