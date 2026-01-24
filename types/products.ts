@@ -5,4 +5,10 @@ export interface Product {
     description: string[];
     price: string;
     features: string[];
+    stock: number;
+}
+
+export interface CartItem {
+    id: string;
+    quantity: number;
 }

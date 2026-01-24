@@ -3,8 +3,9 @@ import React from "react"
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card"
 import { Button } from "../ui/button"
 import Image from "next/image"
+import Link from "next/link"
 
-const ProductCard: React.FC<Product> = ({ name, image, description }) => {
+const ProductCard: React.FC<Product> = ({ name, image, description, id }) => {
   return (
     <Card className="relative mx-auto w-full max-w-sm pt-0">
       <Image
@@ -22,7 +23,13 @@ const ProductCard: React.FC<Product> = ({ name, image, description }) => {
         </CardDescription>
       </CardHeader>
       <CardFooter>
-        <Button className="w-full bg-black text-white cursor-pointer">Show More</Button>
+
+      <Link href={`/product/${id}`} className="w-full">
+        <Button className="w-full bg-black text-white cursor-pointer" >
+          Learn More
+        </Button>
+      </Link>
+
       </CardFooter>
     </Card>
   )

@@ -1,4 +1,6 @@
-export const Products = [
+import { Product } from "@/types/products";
+
+export const Products: Product[] = [
     { 
         id: "pan-pro",
         name: "Pan Pro", 
@@ -14,11 +16,12 @@ export const Products = [
             "Ergonomic handle design",
             "Dishwasher safe",
             "Lightweight and portable"
-        ]
+        ],
+        stock: 0
      },
     { 
-        id: "pan-pro",
-        name: "Pan Pro", 
+        id: "pan-ultra",
+        name: "Pan Ultra", 
         image: "/pan_2.jpg",
         description: [
             "The ultimate pan for all your cooking needs. Durable, non-stick, and perfect for any kitchen.",
@@ -31,11 +34,12 @@ export const Products = [
             "Ergonomic handle design",
             "Dishwasher safe",
             "Lightweight and portable"
-        ]
+        ],
+        stock: 15
      },
     { 
-        id: "pan-pro",
-        name: "Pan Pro", 
+        id: "pan-ultra-pro-max",
+        name: "Pan Ultra Pro Max", 
         image: "/pan_3.jpg",
         description: [
             "The ultimate pan for all your cooking needs. Durable, non-stick, and perfect for any kitchen.",
@@ -48,6 +52,7 @@ export const Products = [
             "Ergonomic handle design",
             "Dishwasher safe",
             "Lightweight and portable"
-        ]
+        ],
+        stock: 99
      }
 ]
