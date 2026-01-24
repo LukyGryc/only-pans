@@ -15,8 +15,15 @@ export const useCartStore = create<CartStore>()(
         products: [],
 
         addToCart: (productId) => (
-            set((state) => ({ products: [...state.products, { id: productId, quantity: 1 }] })
-        )),
+            set((state) => {
+                const existingItem = state.products.find(item => item.id === productId);
+                //Only add new item if it's not already in the store
+                if(!existingItem)
+                    return { products: [...state.products, { id: productId, quantity: 1 }] };
+
+                return { products: state.products }
+            })
+        ),
 
         removeFromCart: (productId) => (
             set((state) => ({ products: state.products.filter(item => item.id !== productId) }))
@@ -24,9 +31,17 @@ export const useCartStore = create<CartStore>()(
 
         updateQuantity: (productId, quantity) => (
             set((state) => ({
-                products: state.products.map(item =>
-                    item.id === productId ? { ...item, quantity: item.quantity + quantity } : item
-                )
+                products: state.products
+                    .map(item => {
+                        if (item.id === productId) {
+                            const newQuantity = item.quantity + quantity;
+                            // Prevent negative quantities
+                            return { ...item, quantity: Math.max(0, newQuantity) };
+                        }
+                        return item;
+                    })
+                    // Remove items with 0 quantity
+                    .filter(item => item.quantity > 0)
             }))
         ),
 
