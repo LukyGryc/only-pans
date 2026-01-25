@@ -16,10 +16,11 @@ const Checkout = () => {
             <span className="font-medium">Back to Cart</span>
         </Link>
         <Content>
-            <div className="w-full flex">
-              <CheckoutForm />
-              <SummaryCheckout />
+            <div className="flex-1 min-w-0 space-y-6">
+                <h1 className="text-2xl font-bold text-gray-900">Checkout</h1>
+                <CheckoutForm />
             </div>
+            <SummaryCheckout />
         </Content>
     </Page>
   )

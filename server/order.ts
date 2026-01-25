@@ -2,14 +2,32 @@
 
 import { db } from "@/db/drizzle";
 import { inventory, orders } from "@/db/schema";
+import { revalidateTag } from "next/cache";
 import { ProductInCart } from "@/types/products";
 import { eq, sql } from "drizzle-orm";
 
 export async function createOrder(contact: OrderInformation, items: ProductInCart[]){
 
     const { address, city, email, firstName, lastName, phone, zipCode } = contact;
+    
     try{
         await db.transaction( async (tx) => {
+            
+            for (const item of items) {
+                const inventoryItem = await tx
+                .select()
+                .from(inventory)
+                .where(eq(inventory.id, item.id))
+                .limit(1);
+                
+                if (!inventoryItem) {
+                    throw new Error("Item not found in inventory");
+                }
+                if (inventoryItem[0].stock < item.quantity) {
+                    throw new Error("Not enough stock for item, readjust your cart");
+                }
+            }
+
             await tx.insert(orders).values({ 
                 address,
                 city,
@@ -18,7 +36,7 @@ export async function createOrder(contact: OrderInformation, items: ProductInCar
                 lastName,
                 phone,
                 zipCode,
-                items,
+                items: JSON.stringify(items),
                 createdAt: new Date(),
                 updatedAt: new Date()
             })
@@ -31,12 +49,11 @@ export async function createOrder(contact: OrderInformation, items: ProductInCar
                 })
                 .where(eq(inventory.id, item.id));
             }
-        })
-        
-    }catch{
-        throw new Error("Failed to create new order")
+        });
+
+        revalidateTag("inventory", "max");
+    } catch (e){
+        console.log(e)
+        throw new Error(e instanceof Error ? e.message : "Failed to create new order")
     }
 }
-
-//Get pans from DB
-//Get all orders -> filter by user -> show past orders

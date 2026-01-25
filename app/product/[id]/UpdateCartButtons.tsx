@@ -2,10 +2,10 @@
 
 import { useCartStore } from '@/store/cartStore';
 import { Button } from '../../../components/ui/button'
-import { ProductInCart } from '@/types/products';
+import { Product } from '@/types/products';
 import { Minus, Plus, ShoppingCart, Trash2 } from 'lucide-react';
 
-const UpdateCartButtons: React.FC<ProductInCart> = (product) => {
+const UpdateCartButtons: React.FC<Product> = (product) => {
   const { addToCart, removeFromCart, updateQuantity, products } = useCartStore();
   
   const { id, stock} = product;
@@ -77,7 +77,7 @@ const UpdateCartButtons: React.FC<ProductInCart> = (product) => {
       </div>
 
       {quantityInCart >= stock && (
-        <p className="text-sm text-amber-600 font-medium">
+        <p className="text-sm text-amber-600 font-medium text-end">
           Maximum quantity reached
         </p>
       )}

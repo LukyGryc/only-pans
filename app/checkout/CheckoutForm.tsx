@@ -9,11 +9,9 @@ import * as z from "zod"
 import {
   Field,
   FieldError,
-  FieldGroup,
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
 import { createOrder } from "@/server/order"
 import { useCartStore } from "@/store/cartStore"
 
@@ -46,17 +44,17 @@ const formSchema = z.object({
         .email({ error: "Not a valid email address" })
 })
 
-interface Fields {
+interface FieldConfig {
     name: keyof z.infer<typeof formSchema>,
     label: string,
     placeholder: string,
-    description?: string
-}[]
+    fullWidth?: boolean
+}
 
-const fields: Fields[] = [
+const fields: FieldConfig[] = [
     { name: "firstName", label: "First Name", placeholder: "Peter" },
     { name: "lastName", label: "Last Name", placeholder: "Parker" },
-    { name: "address", label: "Address", placeholder: "At Auntey 1" },
+    { name: "address", label: "Address", placeholder: "At Auntey 1", fullWidth: true },
     { name: "city", label: "City", placeholder: "New York City" },
     { name: "zipCode", label: "Zip Code", placeholder: "123 45" },
     { name: "phone", label: "Phone Number", placeholder: "123 456 789" },
@@ -82,31 +80,33 @@ export function CheckoutForm() {
     try {
         await createOrder(data, products)
         clearCart();
+        toast.success("Yees")
         //redirect to success page
-    }catch{
-        toast.error("Order creation fail")
+    }catch(e){
+        toast.error(e instanceof Error ? e.message : "Order creation fail")
     }
   }
 
   return (
-    <div className="w-full">
-        <form id="form-rhf-demo" onSubmit={form.handleSubmit(onSubmit)}>
-            <FieldGroup className="flex gap-5 w-1/3">
-                {
-                    fields.map( ({ label, name, placeholder }) => (
+    <div className="flex-1 min-w-0">
+        <form id="form-checkout" onSubmit={form.handleSubmit(onSubmit)} className="w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 w-full">
+                {fields.map(({ label, name, placeholder, fullWidth }) => (
+                    <div
+                        key={name}
+                        className={fullWidth ? "md:col-span-2" : ""}
+                    >
                         <Controller
-                            key={name}
                             name={name}
                             control={form.control}
                             render={({ field, fieldState }) => (
-                                <div>
-                                    <Field data-invalid={fieldState.invalid}>
-                                    <FieldLabel htmlFor="form-rhf-demo-title">
+                                <Field data-invalid={fieldState.invalid}>
+                                    <FieldLabel htmlFor={`checkout-${name}`}>
                                         {label}
                                     </FieldLabel>
                                     <Input
                                         {...field}
-                                        id="form-rhf-demo-title"
+                                        id={`checkout-${name}`}
                                         aria-invalid={fieldState.invalid}
                                         placeholder={placeholder}
                                         autoComplete="off"
@@ -114,17 +114,13 @@ export function CheckoutForm() {
                                     {fieldState.invalid && (
                                         <FieldError errors={[fieldState.error]} />
                                     )}
-                                    </Field>
-                                </div>
+                                </Field>
                             )}
                         />
-                    ))
-                }
-            </FieldGroup>
+                    </div>
+                ))}
+            </div>
         </form>
-        <Button type="submit" form="form-rhf-demo" className="cursor-pointer">
-            Create order as a host
-        </Button>
     </div>
   )
 }

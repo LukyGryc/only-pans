@@ -2,10 +2,11 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import Image from 'next/image';
-import { Products } from '@/constants/products';
 import Link from 'next/link';
+import { Product } from '@/types/products';
 
 export interface CardNavProps {
+  products: Product[];
   extra: React.ReactNode;
   name: string,
   nameStyle?: string
@@ -16,6 +17,7 @@ export interface CardNavProps {
 }
 
 const CardNav: React.FC<CardNavProps> = ({
+  products,
   extra,
   name,
   nameStyle,
@@ -93,7 +95,7 @@ const CardNav: React.FC<CardNavProps> = ({
       tl?.kill();
       tlRef.current = null;
     };
-  }, [ease, Products]);
+  }, [ease, products]);
 
   useLayoutEffect(() => {
     const handleResize = () => {
@@ -198,13 +200,13 @@ const CardNav: React.FC<CardNavProps> = ({
           } md:flex-row md:items-end md:gap-[12px] md:overflow-visible`}
           aria-hidden={!isExpanded}
         >
-          {(Products || []).slice(0, 3).map((item, idx) => (
+          {(products || []).slice(0, 3).map((item, idx) => (
             <div ref={setCardRef(idx)} key={idx} className='relative flex-shrink-0 h-[120px] md:h-auto md:flex-1'>
               <Link href={`/product/${item.id}`} onClick={closeMenuInstantly}>
                 <Image
                   width={300}
                   height={100}
-                  src={item.image}
+                  src={item.imageLink}
                   alt={item.name}
                   className="object-cover cursor-pointer w-full h-full md:object-contain"
                 />

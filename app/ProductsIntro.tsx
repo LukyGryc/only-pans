@@ -1,11 +1,13 @@
+import { getInventoryCached } from "@/server/inventory";
 import ProductCard from "./ProductCard"
-import { Products } from "@/constants/products"
 
-const ProductsIntro = () => {
+const ProductsIntro = async () => {
+  const products = await getInventoryCached();
+
   return (
     <div className="w-3/4 h-auto flex flex-col lg:flex-row mx-auto justify-between gap-6 p-12 mb-12">
         {
-            Products.map((product, index) => (
+            products.map((product, index) => (
                 <ProductCard key={index} {...product} />
             ))
         }

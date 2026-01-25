@@ -1,6 +1,3 @@
-
-import { Product } from "@/types/products";
-import { sql } from "drizzle-orm";
 import { text, pgTable, timestamp, jsonb, uuid, integer } from "drizzle-orm/pg-core";
 
 export const orders = pgTable("orders", {
@@ -14,10 +11,7 @@ export const orders = pgTable("orders", {
     phone: text("phone").notNull(),
     email: text("email").notNull(),
 
-    items: jsonb("items")
-    .$type<Product[]>()
-    .notNull()
-    .default(sql`'[]'::jsonb`),
+    items: text("items").notNull().default("[]"),
     
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at").defaultNow().notNull()
