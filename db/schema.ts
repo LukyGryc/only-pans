@@ -1,4 +1,5 @@
-import { CartItem } from "@/types/products";
+
+import { Product } from "@/types/products";
 import { sql } from "drizzle-orm";
 import { text, pgTable, timestamp, jsonb, uuid, integer } from "drizzle-orm/pg-core";
 
@@ -14,7 +15,7 @@ export const orders = pgTable("orders", {
     email: text("email").notNull(),
 
     items: jsonb("items")
-    .$type<CartItem[]>()
+    .$type<Product[]>()
     .notNull()
     .default(sql`'[]'::jsonb`),
     

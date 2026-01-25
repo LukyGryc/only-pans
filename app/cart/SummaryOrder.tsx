@@ -1,15 +1,11 @@
 import { Button } from "@/components/ui/button"
-import { ProductWithQuantity } from "@/types/products"
+import { useCartStore } from "@/store/cartStore";
 import { getPriceFormatted } from "@/util/productUtil"
 import Link from "next/link"
 
-interface Props {
-    items: ProductWithQuantity[]
-};
-
-const SummaryOrder: React.FC<Props> = ({items}) => {
-
-    const numberOfItemsInCart = items.reduce((acc, { quantity }) => acc + quantity, 0);
+const SummaryOrder = () => {
+    const { products } = useCartStore();
+    const numberOfItemsInCart = products.reduce((acc, { quantity }) => acc + quantity, 0);
 
     return (
         <div className="w-full lg:max-w-sm bg-gray-50 rounded-xl p-6 h-fit">
@@ -22,7 +18,7 @@ const SummaryOrder: React.FC<Props> = ({items}) => {
 
             <div className="flex justify-between font-semibold text-lg border-t pt-4">
                 <span>Total</span>
-                <span>{ getPriceFormatted(items.reduce((acc, { price, quantity }) => acc + price * quantity , 0)) }</span>
+                <span>{ getPriceFormatted(products.reduce((acc, { price, quantity }) => acc + price * quantity , 0)) }</span>
             </div>
 
             { //The asChild prevented the disabled styling to apply, so decided to go with two buttons one with link and one without

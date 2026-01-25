@@ -8,12 +8,6 @@ export interface Product {
     stock: number;
 }
 
-export interface CartItem {
-    id: string;
-    quantity: number;
-    price: number;
-}
-
-export interface ProductWithQuantity extends Product {
+export interface ProductInCart extends Product {
     quantity: number
 }

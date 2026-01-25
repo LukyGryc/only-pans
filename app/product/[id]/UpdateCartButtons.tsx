@@ -2,24 +2,26 @@
 
 import { useCartStore } from '@/store/cartStore';
 import { Button } from '../../../components/ui/button'
-import { Product } from '@/types/products';
+import { ProductInCart } from '@/types/products';
 import { Minus, Plus, ShoppingCart, Trash2 } from 'lucide-react';
 
-const UpdateCartButtons: React.FC<Product> = ({ id, stock, price }) => {
+const UpdateCartButtons: React.FC<ProductInCart> = (product) => {
   const { addToCart, removeFromCart, updateQuantity, products } = useCartStore();
   
-  const cartItem = products.find((item) => item.id === id);
-  const quantityInCart = cartItem?.quantity || 0;
+  const { id, stock} = product;
   const isInStock = stock > 0;
 
-  // If item is not in cart, show "Add to Cart" button
-  if (!cartItem) {
+  const productInCart = products.find((item) => item.id === id);
+  const quantityInCart = productInCart?.quantity || 0;
+
+  // If product is not in cart, show button
+  if (!productInCart) {
     return (
       <Button
         size="lg"
         disabled={!isInStock}
         className="w-full h-12 mt-4 text-white py-4 px-8 font-semibold text-lg hover:bg-gray-800 transition-colors duration-200 shadow-lg hover:shadow-xl"
-        onClick={() => addToCart(id, price)}
+        onClick={() => addToCart(product)}
       >
         <ShoppingCart className="w-5 h-5 mr-2" />
         {isInStock ? 'Add to Cart' : 'Out of Stock'}

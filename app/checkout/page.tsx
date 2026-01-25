@@ -3,6 +3,7 @@ import Page from "@/components/layout/Page"
 import { CheckoutForm } from "./CheckoutForm"
 import { ShoppingCart } from "lucide-react"
 import Link from "next/link"
+import SummaryCheckout from "./SummaryCheckout"
 
 const Checkout = () => {
   return (
@@ -15,7 +16,10 @@ const Checkout = () => {
             <span className="font-medium">Back to Cart</span>
         </Link>
         <Content>
-            <CheckoutForm />
+            <div className="w-full flex">
+              <CheckoutForm />
+              <SummaryCheckout />
+            </div>
         </Content>
     </Page>
   )

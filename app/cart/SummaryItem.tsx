@@ -1,9 +1,9 @@
-import { ProductWithQuantity } from "@/types/products"
+import { ProductInCart } from "@/types/products"
 import { getPriceFormatted } from "@/util/productUtil"
 import Image from "next/image"
 import UpdateCartButtons from "../product/[id]/UpdateCartButtons"
 
-const SummaryItem: React.FC<ProductWithQuantity> = (product) => {
+const SummaryItem: React.FC<ProductInCart> = (product) => {
   return (
     <div className="flex items-center gap-6 border-b pb-6 last:border-b-0">
         <div className="w-24 h-24 bg-gray-50 rounded-xl flex items-center justify-center">

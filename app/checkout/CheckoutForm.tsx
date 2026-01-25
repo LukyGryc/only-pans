@@ -122,8 +122,8 @@ export function CheckoutForm() {
                 }
             </FieldGroup>
         </form>
-        <Button type="submit" form="form-rhf-demo">
-            Submit
+        <Button type="submit" form="form-rhf-demo" className="cursor-pointer">
+            Create order as a host
         </Button>
     </div>
   )

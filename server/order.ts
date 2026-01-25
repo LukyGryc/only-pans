@@ -2,10 +2,10 @@
 
 import { db } from "@/db/drizzle";
 import { inventory, orders } from "@/db/schema";
-import { CartItem } from "@/types/products";
+import { ProductInCart } from "@/types/products";
 import { eq, sql } from "drizzle-orm";
 
-export async function createOrder(contact: OrderInformation, items: CartItem[]){
+export async function createOrder(contact: OrderInformation, items: ProductInCart[]){
 
     const { address, city, email, firstName, lastName, phone, zipCode } = contact;
     try{
