@@ -1,6 +1,6 @@
 import { CartItem } from "@/types/products";
 import { sql } from "drizzle-orm";
-import { integer, text, pgTable, timestamp, jsonb, uuid } from "drizzle-orm/pg-core";
+import { text, pgTable, timestamp, jsonb, uuid, integer } from "drizzle-orm/pg-core";
 
 export const orders = pgTable("orders", {
     id: uuid("id").primaryKey().defaultRandom(),
@@ -20,4 +20,25 @@ export const orders = pgTable("orders", {
     
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at").defaultNow().notNull()
+});
+
+
+export const inventory = pgTable("inventory", {
+  id: text("id").primaryKey(),
+
+  name: text("name").notNull().unique(),
+
+  imageLink: text("image_link").notNull(),
+
+  description: text("description")
+    .array()
+    .notNull(),
+
+  price: integer("price").notNull(),
+
+  features: text("features")
+    .array()
+    .notNull(),
+
+  stock: integer("stock").notNull(),
 });

@@ -30,9 +30,9 @@ const UpdateCartButtons: React.FC<Product> = ({ id, stock, price }) => {
   // If item is in cart, show quantity controls
   return (
     <div className="mt-4 space-y-3 h-12">
-      <div className="flex gap-2">
+      <div className="flex gap-2 justify-end">
         {/* Quantity Controls */}
-        <div className="flex items-center border rounded-lg flex-1">
+        <div className="flex items-center border rounded-lg justify">
           <Button
             type="button"
             variant="ghost"
