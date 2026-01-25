@@ -4,7 +4,7 @@ import { FormProvider, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { CheckoutForm } from "./CheckoutForm"
 import SummaryCheckout from "./SummaryCheckout"
-import { checkoutFormSchema, FormSchema } from "./checkoutSchema"
+import { checkoutFormSchema, FormSchema } from "@/app/checkout/checkoutSchema"
 
 export function CheckoutWrapper() {
     const form = useForm<FormSchema>({

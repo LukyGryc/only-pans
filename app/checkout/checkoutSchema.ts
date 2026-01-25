@@ -29,7 +29,7 @@ export const checkoutFormSchema = z.object({
     phone: z
         .string()
         .trim()
-        .min(1, "Postal/Zip code is required.")
+        .min(1, "Phone number is required.")
         .regex(/^\d{5,13}$/, "Must be 5-13 digits"),
     email: z
         .email({ error: "Not a valid email address" })
