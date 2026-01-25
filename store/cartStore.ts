@@ -1,10 +1,11 @@
+import { Product, ProductInCart } from '@/types/products'
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
-import { CartItem } from '@/types/products'
-type CartStore = {
-    products: CartItem[],
 
-    addToCart: (productId: string) => void,
+type CartStore = {
+    products: ProductInCart[],
+
+    addToCart: (product: Product) => void,
     removeFromCart: (productId: string) => void,
     updateQuantity: (productId: string, quantity: number) => void,
     clearCart: () => void
@@ -14,12 +15,12 @@ export const useCartStore = create<CartStore>()(
         (set) => ({
         products: [],
 
-        addToCart: (productId) => (
+        addToCart: (product) => (
             set((state) => {
-                const existingItem = state.products.find(item => item.id === productId);
+                const existingItem = state.products.find(item => item.id === product.id);
                 //Only add new item if it's not already in the store
                 if(!existingItem)
-                    return { products: [...state.products, { id: productId, quantity: 1 }] };
+                    return { products: [...state.products, { ...product, quantity: 1 }] };
 
                 return { products: state.products }
             })
@@ -29,7 +30,7 @@ export const useCartStore = create<CartStore>()(
             set((state) => ({ products: state.products.filter(item => item.id !== productId) }))
         ),
 
-        updateQuantity: (productId, quantity) => (
+        updateQuantity: (productId, quantity) => {
             set((state) => ({
                 products: state.products
                     .map(item => {
@@ -43,7 +44,7 @@ export const useCartStore = create<CartStore>()(
                     // Remove items with 0 quantity
                     .filter(item => item.quantity > 0)
             }))
-        ),
+        },
 
         clearCart: () => set({ products: [] })
     }),

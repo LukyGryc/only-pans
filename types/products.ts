@@ -1,18 +1,13 @@
 export interface Product {
     id: string;
     name: string;
-    image: string;
+    imageLink: string;
     description: string[];
     price: number;
     features: string[];
     stock: number;
 }
 
-export interface CartItem {
-    id: string;
-    quantity: number;
-}
-
-export interface ProductWithQuantity extends Product {
+export interface ProductInCart extends Product {
     quantity: number
 }
