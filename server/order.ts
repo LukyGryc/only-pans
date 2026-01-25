@@ -5,6 +5,7 @@ import { inventory, orders } from "@/db/schema";
 import { revalidateTag } from "next/cache";
 import { ProductInCart } from "@/types/products";
 import { eq, sql } from "drizzle-orm";
+import { OrderInformation } from "@/types/orders";
 
 export async function createOrder(contact: OrderInformation, items: ProductInCart[]){
 
@@ -20,7 +21,7 @@ export async function createOrder(contact: OrderInformation, items: ProductInCar
                 .where(eq(inventory.id, item.id))
                 .limit(1);
                 
-                if (!inventoryItem) {
+                if (inventoryItem.length === 0) {
                     throw new Error("Item not found in inventory");
                 }
                 if (inventoryItem[0].stock < item.quantity) {
@@ -45,7 +46,7 @@ export async function createOrder(contact: OrderInformation, items: ProductInCar
                 await tx
                 .update(inventory)
                 .set({
-                    stock: sql`${inventory.stock} - ${item.quantity}`,
+                    stock: sql`GREATEST(0, ${inventory.stock} - ${item.quantity})`,
                 })
                 .where(eq(inventory.id, item.id));
             }

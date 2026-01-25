@@ -3,9 +3,11 @@ import { Button } from "@/components/ui/button"
 import { useCartStore } from "@/store/cartStore"
 import { getPriceFormatted } from "@/util/productUtil";
 import Image from "next/image";
+import { useFormContext } from "react-hook-form";
 
 const SummaryCheckout = () => {
   const { products } = useCartStore();
+  const { formState: { isSubmitting } } = useFormContext();
   const total = products.reduce((acc, { price, quantity }) => acc + price * quantity, 0);
 
   return (
@@ -48,9 +50,10 @@ const SummaryCheckout = () => {
       <Button
         type="submit"
         form="form-checkout"
-        className="mt-6 h-12 w-full text-lg bg-gray-900 text-white py-3 rounded-xl hover:bg-gray-800 transition cursor-pointer"
+        disabled={products.length === 0 || isSubmitting}
+        className="mt-6 h-12 w-full text-lg bg-gray-900 text-white py-3 rounded-xl hover:bg-gray-800 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Create order as a host
+        {isSubmitting ? "Creating order..." : "Create order as a host"}
       </Button>
     </div>
   );

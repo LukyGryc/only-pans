@@ -1,9 +1,8 @@
 import Content from "@/components/layout/Content"
 import Page from "@/components/layout/Page"
-import { CheckoutForm } from "./CheckoutForm"
 import { ShoppingCart } from "lucide-react"
 import Link from "next/link"
-import SummaryCheckout from "./SummaryCheckout"
+import { CheckoutWrapper } from "./CheckoutWrapper"
 
 const Checkout = () => {
   return (
@@ -16,11 +15,7 @@ const Checkout = () => {
             <span className="font-medium">Back to Cart</span>
         </Link>
         <Content>
-            <div className="flex-1 min-w-0 space-y-6">
-                <h1 className="text-2xl font-bold text-gray-900">Checkout</h1>
-                <CheckoutForm />
-            </div>
-            <SummaryCheckout />
+            <CheckoutWrapper />
         </Content>
     </Page>
   )

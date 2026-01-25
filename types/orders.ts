@@ -1,4 +1,4 @@
-interface OrderInformation {
+export interface OrderInformation {
     firstName: string;
     lastName: string;
     address: string;

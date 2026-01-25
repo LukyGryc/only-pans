@@ -22,17 +22,16 @@ const Cart = () => {
             </Link>
 
             <Content>
-                {/* Cart Items */}
                 <div className="flex-1 space-y-6">
-                <h1 className="text-2xl font-bold text-gray-900">Your Cart</h1>
+                    <h1 className="text-2xl font-bold text-gray-900">Your Cart</h1>
 
-                {products.length === 0 && (
-                    <p className="text-gray-600">Your cart is empty.</p>
-                )}
+                    {products.length === 0 && (
+                        <p className="text-gray-600">Your cart is empty.</p>
+                    )}
 
-                {products.map(item => (
-                    <SummaryItem key={item.id} {...item} />
-                ))}
+                    {products.map(item => (
+                        <SummaryItem key={item.id} {...item} />
+                    ))}
                 </div>
 
                 <SummaryOrder />

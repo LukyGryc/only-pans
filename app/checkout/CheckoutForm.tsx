@@ -1,10 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { Controller, useForm } from "react-hook-form"
+import { Controller, useFormContext } from "react-hook-form"
 import { toast } from "sonner"
-import * as z from "zod"
 
 import {
   Field,
@@ -14,38 +12,10 @@ import {
 import { Input } from "@/components/ui/input"
 import { createOrder } from "@/server/order"
 import { useCartStore } from "@/store/cartStore"
-
-const formSchema = z.object({
-    firstName: z
-        .string()
-        .min(1, "First name must be at least 1 character.")
-        .max(32, "First name must be at most 32 character."),
-    lastName: z
-        .string()
-        .min(1, "Last name must be at least 1 character.")
-        .max(32, "Last name must be at most 32 character."),
-    address: z
-        .string()
-        .min(1, "Address must be at least 1 character.")
-        .max(62, "Address name must be at most 64 character."),
-    city: z
-        .string()
-        .min(1, "City must be at least 1 character.")
-        .max(32, "City name must be at most 32 character."),
-    zipCode: z
-        .string()
-        .min(1, "Zip code must be at least 1 character.")
-        .max(5, "Zip code name must be at most 5 character."),
-    phone: z
-        .string()
-        .min(1, "Phone number must be at least 1 character.")
-        .max(13, "Phone number name must be at most 13 character."),
-    email: z
-        .email({ error: "Not a valid email address" })
-})
+import { FormSchema } from "./checkoutSchema"
 
 interface FieldConfig {
-    name: keyof z.infer<typeof formSchema>,
+    name: keyof FormSchema,
     label: string,
     placeholder: string,
     fullWidth?: boolean
@@ -63,21 +33,15 @@ const fields: FieldConfig[] = [
 
 export function CheckoutForm() {
     const { products, clearCart } = useCartStore();
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-        firstName: "",
-        lastName: "",
-        address: "",
-        city: "",
-        zipCode: "",
-        phone: "",
-        email: ""
-        },
-    })
+    const form = useFormContext<FormSchema>()
 
-  async function onSubmit(data: z.infer<typeof formSchema>) {
+  async function onSubmit(data: FormSchema) {
     try {
+        if (products.length === 0) {
+            toast.error("Your cart is empty.");
+            return;
+        }
+
         await createOrder(data, products)
         clearCart();
         //redirect to success page
