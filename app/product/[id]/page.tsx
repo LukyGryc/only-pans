@@ -43,7 +43,7 @@ const ProductPage = async ({ params }: Props) => {
         href="/"
         className="inline-flex mt-16 xl:mt-0 items-center gap-2 text-gray-600 hover:text-gray-900 mb-6 transition-colors group"
       >
-        <Home className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+        <Home className="w-4 h-4" />
         <span className="font-medium">Back to Home</span>
       </Link>
 

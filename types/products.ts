@@ -11,6 +11,7 @@ export interface Product {
 export interface CartItem {
     id: string;
     quantity: number;
+    price: number;
 }
 
 export interface ProductWithQuantity extends Product {

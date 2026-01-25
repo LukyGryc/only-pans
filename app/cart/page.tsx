@@ -31,7 +31,7 @@ const Cart = () => {
                 href="/"
                 className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6 group"
             >
-                <Home className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                <Home className="w-4 h-4" />
                 <span className="font-medium">Continue Shopping</span>
             </Link>
 

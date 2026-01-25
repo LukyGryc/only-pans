@@ -4,7 +4,7 @@ import { CartItem } from '@/types/products'
 type CartStore = {
     products: CartItem[],
 
-    addToCart: (productId: string) => void,
+    addToCart: (productId: string, price: number) => void,
     removeFromCart: (productId: string) => void,
     updateQuantity: (productId: string, quantity: number) => void,
     clearCart: () => void
@@ -14,12 +14,12 @@ export const useCartStore = create<CartStore>()(
         (set) => ({
         products: [],
 
-        addToCart: (productId) => (
+        addToCart: (productId, price) => (
             set((state) => {
                 const existingItem = state.products.find(item => item.id === productId);
                 //Only add new item if it's not already in the store
                 if(!existingItem)
-                    return { products: [...state.products, { id: productId, quantity: 1 }] };
+                    return { products: [...state.products, { id: productId, quantity: 1, price }] };
 
                 return { products: state.products }
             })
