@@ -12,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { createOrder } from "@/server/order"
 import { useCartStore } from "@/store/cartStore"
-import { FormSchema } from "./checkoutSchema"
+import { FormSchema } from "@/app/checkout/checkoutSchema"
 
 interface FieldConfig {
     name: keyof FormSchema,
