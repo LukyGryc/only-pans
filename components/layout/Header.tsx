@@ -5,11 +5,16 @@ import CardNav from "../reactbits/CardNav"
 import { ShoppingCart } from "lucide-react"
 import { useEffect, useState } from "react"
 import Link from "next/link";
+import type { Product } from "@/types/products";
 
-const Header = () => {
+interface HeaderProps {
+  products?: Product[];
+}
+
+const Header = ({ products = [] }: HeaderProps) => {
   const [ mounted, setMounted ] = useState(false);
-  const { products } = useCartStore();
-  const count = products.reduce((acc, item) => acc + item.quantity, 0);
+  const { products: cartProducts } = useCartStore();
+  const count = cartProducts.reduce((acc, item) => acc + item.quantity, 0);
 
   // Prevent hydration mismatch by only rendering count after mount
   useEffect(() => {
@@ -19,6 +24,7 @@ const Header = () => {
   return (
     <header className="fixed w-full z-20">
       <CardNav
+          products={products}
           name="OnlyPans"
           nameStyle="text-2xl font-bold"
           extra={

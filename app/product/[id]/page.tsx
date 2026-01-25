@@ -1,11 +1,11 @@
 import ProductInfo from "@/app/product/[id]/ProductInfo"
-import { Products } from "@/constants/products"
 import { Home } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
 import Page from "@/components/layout/Page"
 import Content from "@/components/layout/Content"
+import { getProduct } from "@/server/inventory"
 
 interface Props {
   params: Promise<{
@@ -16,7 +16,7 @@ interface Props {
 const ProductPage = async ({ params }: Props) => {
   const { id } = await params
 
-  const product = Products.find((product) => product.id === id)
+  const product = await getProduct(id)
 
   if (!product) {
     return (
@@ -35,7 +35,7 @@ const ProductPage = async ({ params }: Props) => {
     )
   }
 
-  const { name, image } = product
+  const { name, imageLink } = product
 
   return (
     <Page>
@@ -43,7 +43,7 @@ const ProductPage = async ({ params }: Props) => {
         href="/"
         className="inline-flex mt-16 xl:mt-0 items-center gap-2 text-gray-600 hover:text-gray-900 mb-6 transition-colors group"
       >
-        <Home className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+        <Home className="w-4 h-4" />
         <span className="font-medium">Back to Home</span>
       </Link>
 
@@ -51,7 +51,7 @@ const ProductPage = async ({ params }: Props) => {
         {/* Image Section */}
         <div className="flex-1 flex items-center justify-center bg-gray-50 rounded-xl p-8">
           <Image
-            src={image}
+            src={imageLink}
             alt={name}
             width={500}
             height={400}

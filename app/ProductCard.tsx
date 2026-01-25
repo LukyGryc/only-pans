@@ -6,11 +6,11 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 
-const ProductCard: React.FC<Product> = ({ name, image, description, id }) => {
+const ProductCard: React.FC<Product> = ({ name, imageLink, description, id }) => {
   return (
     <Card className="relative mx-auto w-full max-w-sm pt-0">
       <Image
-        src={image}
+        src={imageLink}
         alt={name}
         width={300}
         height={225}
