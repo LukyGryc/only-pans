@@ -53,7 +53,7 @@ export async function createOrder(contact: OrderInformation, items: ProductInCar
 
         revalidateTag("inventory", "max");
     } catch (e){
-        console.log(e)
+
         throw new Error(e instanceof Error ? e.message : "Failed to create new order")
     }
 }

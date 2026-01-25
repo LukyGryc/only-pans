@@ -80,7 +80,6 @@ export function CheckoutForm() {
     try {
         await createOrder(data, products)
         clearCart();
-        toast.success("Yees")
         //redirect to success page
     }catch(e){
         toast.error(e instanceof Error ? e.message : "Order creation fail")
