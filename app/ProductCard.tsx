@@ -14,7 +14,7 @@ const ProductCard: React.FC<Product> = ({ name, imageLink, description, id }) =>
         alt={name}
         width={300}
         height={225}
-        className=" z-20 w-full object-cover rounded-t-xl"
+        className="w-full object-cover rounded-t-xl"
       />
       <CardHeader>
 

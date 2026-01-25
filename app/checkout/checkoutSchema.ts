@@ -25,12 +25,12 @@ export const checkoutFormSchema = z.object({
         .string()
         .trim()
         .min(1, "Postal/Zip code is required.")
-        .max(12, "Postal/Zip code must be at most 12 characters."),
+        .regex(/^\d{5,9}$/, "Postal/Zip code must be 5-9 digits."),
     phone: z
         .string()
         .trim()
-        .min(7, "Phone number must be at least 7 characters.")
-        .max(20, "Phone number must be at most 20 characters."),
+        .min(1, "Postal/Zip code is required.")
+        .regex(/^\d{5,13}$/, "Must be 5-13 digits"),
     email: z
         .email({ error: "Not a valid email address" })
 })
