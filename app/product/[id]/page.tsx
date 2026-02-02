@@ -2,6 +2,7 @@ import ProductInfo from "@/app/product/[id]/ProductInfo"
 import { Home } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import type { Metadata } from "next"
 
 import Page from "@/components/layout/Page"
 import Content from "@/components/layout/Content"
@@ -11,6 +12,16 @@ interface Props {
   params: Promise<{
     id: string
   }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params
+  const product = await getProduct(id)
+  if (!product) return { title: "Product Not Found" }
+  return {
+    title: product.name,
+    description: product.description?.[0] ?? `Shop ${product.name} at OnlyPans`,
+  }
 }
 
 const ProductPage = async ({ params }: Props) => {
@@ -43,7 +54,7 @@ const ProductPage = async ({ params }: Props) => {
         href="/"
         className="inline-flex mt-16 xl:mt-0 items-center gap-2 text-gray-600 hover:text-gray-900 mb-6 transition-colors group"
       >
-        <Home className="w-4 h-4" />
+        <Home className="w-4 h-4" aria-hidden />
         <span className="font-medium">Back to Home</span>
       </Link>
 

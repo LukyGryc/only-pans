@@ -29,8 +29,8 @@ const Header = ({ products = [] }: HeaderProps) => {
           nameStyle="text-2xl font-bold"
           extra={
             <div className="relative">
-              <Link href="/cart" >
-                <ShoppingCart className="w-6 h-6 text-gray-900" />
+              <Link href="/cart" aria-label={count > 0 ? `View cart (${count} items)` : "View cart"}>
+                <ShoppingCart className="w-6 h-6 text-gray-900" aria-hidden />
               </Link>
 
               {mounted && count > 0 && (

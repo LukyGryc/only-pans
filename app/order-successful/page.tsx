@@ -41,10 +41,10 @@ const OrderSuccessful = () => {
   return (
     <Page>
       <Link
-        href="/cart"
+        href="/"
         className="inline-flex mt-16 xl:mt-0 items-center gap-2 text-gray-600 hover:text-gray-900 mb-6 transition-colors group"
       >
-        <House className="w-4 h-4" />
+        <House className="w-4 h-4" aria-hidden />
         <span className="font-medium">Back to Home</span>
       </Link>
       <Content>
