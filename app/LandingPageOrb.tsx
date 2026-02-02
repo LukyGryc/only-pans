@@ -10,10 +10,10 @@ const LandingPageOrb = () => {
               backgroundColor="#000000"
           />
         </div>
-        <div className="absolute flex flex-col gap-6 md:gap-12 px-4 z-10">
+        <div className="absolute flex flex-col w-4/5 gap-6 md:gap-12 px-4 z-10">
           <div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center">THE FUTURE OF COOKING</h1>
-              <h2 className="text-xl md:text-2xl lg:text-3xl text-center">IS HERE</h2>
+              <h1 className="text-3xl md:text-4xl font-bold text-center word-wrap:break-words">THE FUTURE OF COOKING</h1>
+              <h2 className="text-xl md:text-2xl text-center">IS HERE</h2>
           </div>
           <p className="text-base md:text-lg text-center">The only pans you will ever need</p>
         </div>

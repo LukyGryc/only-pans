@@ -1,6 +1,7 @@
 "use client"
 
 import { Controller, useFormContext } from "react-hook-form"
+import { useRouter } from "next/navigation"
 import { toast } from "sonner"
 
 import {
@@ -33,6 +34,7 @@ const fields: FieldConfig[] = [
 export function CheckoutForm() {
     const { products, clearCart } = useCartStore();
     const form = useFormContext<FormSchema>()
+    const router = useRouter()
 
   async function onSubmit(data: FormSchema) {
     try {
@@ -43,7 +45,7 @@ export function CheckoutForm() {
 
         await createOrder(data, products)
         clearCart();
-        //redirect to success page
+        router.push("/order-successful")
     }catch(e){
         toast.error(e instanceof Error ? e.message : "Order creation fail")
     }

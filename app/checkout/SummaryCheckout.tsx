@@ -8,8 +8,9 @@ import { useFormContext } from "react-hook-form";
 const SummaryCheckout = () => {
   const { products } = useCartStore();
   const { formState: { isSubmitting } } = useFormContext();
+  
   const total = products.reduce((acc, { price, quantity }) => acc + price * quantity, 0);
-
+  
   return (
     <div className="w-full lg:max-w-sm bg-gray-50 rounded-xl p-6 h-fit shrink-0">
       <h2 className="text-lg font-semibold text-gray-900 mb-4">Order Summary</h2>
