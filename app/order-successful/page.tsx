@@ -1,42 +1,43 @@
 "use client";
+import { useEffect } from "react";
 import Content from "@/components/layout/Content"
 import Page from "@/components/layout/Page"
-import { Confetti } from "@/components/ui/confetti";
 import confetti from "canvas-confetti";
 import { House } from "lucide-react"
 import Link from "next/link"
 
 const OrderSuccessful = () => {
-
   //Stolen from MagicUI docs
   //https://magicui.design/docs/components/confetti
-  const end = Date.now() + 3 * 1000 // 3 seconds
-  const colors = ["#a786ff", "#fd8bbc", "#eca184", "#f8deb1"]
+  useEffect(() => {
+    const end = Date.now() + 3 * 1000;
+    const colors = ["#a786ff", "#fd8bbc", "#eca184", "#f8deb1"];
 
-  const frame = () => {
-    if (Date.now() > end) return
+    const frame = () => {
+      if (Date.now() > end) return;
 
-    confetti({
-      particleCount: 2,
-      angle: 60,
-      spread: 55,
-      startVelocity: 60,
-      origin: { x: 0, y: 0.5 },
-      colors: colors,
-    })
-    confetti({
-      particleCount: 2,
-      angle: 120,
-      spread: 55,
-      startVelocity: 60,
-      origin: { x: 1, y: 0.5 },
-      colors: colors,
-    })
+      confetti({
+        particleCount: 2,
+        angle: 60,
+        spread: 55,
+        startVelocity: 60,
+        origin: { x: 0, y: 0.5 },
+        colors,
+      });
+      confetti({
+        particleCount: 2,
+        angle: 120,
+        spread: 55,
+        startVelocity: 60,
+        origin: { x: 1, y: 0.5 },
+        colors,
+      });
 
-    requestAnimationFrame(frame)
-  }
+      requestAnimationFrame(frame);
+    };
 
-  frame()
+    frame();
+  }, []);
 
   return (
     <Page>
